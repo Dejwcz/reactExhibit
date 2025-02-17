@@ -1,0 +1,54 @@
+{
+  "fish": [
+    {
+      "id": "fish1",
+      "name": "Moonfish",
+      "type": "small"
+    },
+    {
+      "id": "fish2",
+      "name": "Sunfish",
+      "type": "small"
+    },
+    {
+      "id": "fish3",
+      "name": "Starfish",
+      "type": "big"
+    },
+    {
+      "id": "fish4",
+      "name": "Rainbowfish",
+      "type": "big"
+    },
+    {
+      "id": "fish5",
+      "name": "Goldfish",
+      "type": "small"
+    },
+    {
+      "id": "fish6",
+      "name": "Silverfish",
+      "type": "small"
+    },
+    {
+      "id": "fish7",
+      "name": "Bronzefish",
+      "type": "big"
+    },
+    {
+      "id": "fish8",
+      "name": "Copperfish",
+      "type": "big"
+    },
+    {
+      "id": "fish9",
+      "name": "Platinumfish",
+      "type": "small"
+    },
+    {
+      "id": "fish10",
+      "name": "Titaniumfish",
+      "type": "small"
+    }
+  ]
+}
