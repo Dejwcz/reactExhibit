@@ -19,8 +19,10 @@ const ScreenTwo = () => {
         {/* Play/Pause Toggle */}
         <div className="flex justify-center mb-8">
           <button
+            type="button"
             onClick={() => setIsPlaying(!isPlaying)}
             className="btn-glass flex items-center gap-2"
+            aria-pressed={isPlaying}
           >
             {isPlaying ? (
               <>

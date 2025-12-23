@@ -115,7 +115,7 @@ const FormExScreen = () => {
           </div>
           <div className="flex items-center justify-between">
             <span className="text-white/60">Total Cost</span>
-            <span className="text-4xl font-bold text-gradient">
+            <span className="text-4xl font-bold text-gradient" aria-live="polite" aria-atomic="true">
               {totalCost.toLocaleString()} CZK
             </span>
           </div>
@@ -126,13 +126,14 @@ const FormExScreen = () => {
           <div className="space-y-6">
             {/* Services Checkboxes */}
             <div className="glass-card">
-              <h3 className="text-lg font-semibold mb-4">Select Services</h3>
-              <div className="space-y-3">
+              <h3 id="services-heading" className="text-lg font-semibold mb-4">Select Services</h3>
+              <div className="space-y-3" role="group" aria-labelledby="services-heading">
                 {services.map((service) => (
                   <label
                     key={service.id}
                     className={`
                       flex items-center justify-between p-4 rounded-xl cursor-pointer transition-all duration-300
+                      focus-within:ring-2 focus-within:ring-neon-purple/40
                       ${selectedServices.includes(service.id)
                         ? "bg-neon-purple/20 border border-neon-purple/50"
                         : "bg-white/5 border border-white/10 hover:bg-white/10"
@@ -170,15 +171,24 @@ const FormExScreen = () => {
             {/* Other Work */}
             <div className="glass-card">
               <h3 className="text-lg font-semibold mb-4">Additional Work</h3>
+              <label htmlFor="other-work" className="sr-only">
+                Describe additional work needed
+              </label>
               <textarea
+                id="other-work"
+                name="otherWork"
                 value={otherWork}
                 onChange={(e) => setOtherWork(e.target.value)}
                 placeholder="Describe additional work needed..."
                 className="glass-input w-full h-24 resize-none mb-4"
               />
               <div>
-                <label className="block text-white/60 text-sm mb-2">Estimated Cost (CZK)</label>
+                <label htmlFor="other-work-cost" className="block text-white/60 text-sm mb-2">
+                  Estimated Cost (CZK)
+                </label>
                 <input
+                  id="other-work-cost"
+                  name="otherWorkCost"
                   type="number"
                   min="0"
                   value={otherWorkCost || ""}
@@ -195,7 +205,12 @@ const FormExScreen = () => {
             {/* Brand Select */}
             <div className="glass-card">
               <h3 className="text-lg font-semibold mb-4">Vehicle Brand</h3>
+              <label htmlFor="vehicle-brand" className="sr-only">
+                Select a vehicle brand
+              </label>
               <select
+                id="vehicle-brand"
+                name="vehicleBrand"
                 value={selectedBrand}
                 onChange={(e) => setSelectedBrand(e.target.value)}
                 className="glass-select w-full"
@@ -209,13 +224,14 @@ const FormExScreen = () => {
 
             {/* Fuel Type Radio Buttons */}
             <div className="glass-card">
-              <h3 className="text-lg font-semibold mb-4">Fuel Type</h3>
-              <div className="grid grid-cols-2 gap-3">
+              <h3 id="fuel-type-heading" className="text-lg font-semibold mb-4">Fuel Type</h3>
+              <div className="grid grid-cols-2 gap-3" role="radiogroup" aria-labelledby="fuel-type-heading">
                 {fuelTypes.map((fuel) => (
                   <label
                     key={fuel.id}
                     className={`
                       flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all duration-300
+                      focus-within:ring-2 focus-within:ring-neon-pink/40
                       ${selectedFuel === fuel.id
                         ? "bg-neon-pink/20 border border-neon-pink/50"
                         : "bg-white/5 border border-white/10 hover:bg-white/10"
@@ -251,7 +267,12 @@ const FormExScreen = () => {
             <div className="glass-card">
               <h3 className="text-lg font-semibold mb-4">Mileage</h3>
               <div className="flex items-center gap-4">
+                <label htmlFor="mileage-km" className="sr-only">
+                  Mileage in kilometers
+                </label>
                 <input
+                  id="mileage-km"
+                  name="mileageKm"
                   type="number"
                   value={mileage || ""}
                   onChange={(e) => setMileage(Math.max(0, parseInt(e.target.value) || 0))}
@@ -265,6 +286,7 @@ const FormExScreen = () => {
                 {[50000, 100000, 150000, 200000].map((km) => (
                   <button
                     key={km}
+                    type="button"
                     onClick={() => setMileage(km)}
                     className={`
                       flex-1 py-2 rounded-lg text-sm transition-all
@@ -281,7 +303,7 @@ const FormExScreen = () => {
             </div>
 
             {/* Submit Button */}
-            <button className="btn-neon w-full py-4 text-lg">
+            <button type="button" className="btn-neon w-full py-4 text-lg">
               Submit Order
             </button>
           </div>

@@ -57,13 +57,19 @@ const Fish = () => {
         </div>
 
         {/* Tab Buttons */}
-        <div className="flex justify-center gap-4 mb-8">
+        <div className="flex justify-center gap-4 mb-8" role="tablist" aria-label="Aquarium views">
           {[
             { id: "list", label: "Fish List", icon: "M4 6h16M4 10h16M4 14h16M4 18h16" },
             { id: "planner", label: "Aquarium Planner", icon: "M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" },
           ].map((tab) => (
             <button
               key={tab.id}
+              type="button"
+              role="tab"
+              id={`aquarium-tab-${tab.id}`}
+              aria-controls={`aquarium-panel-${tab.id}`}
+              aria-selected={activeTab === tab.id}
+              tabIndex={activeTab === tab.id ? 0 : -1}
               onClick={() => setActiveTab(tab.id as "list" | "planner")}
               className={`
                 flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300
@@ -73,7 +79,7 @@ const Fish = () => {
                 }
               `}
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={tab.icon} />
               </svg>
               {tab.label}
@@ -101,6 +107,10 @@ const Fish = () => {
           {activeTab === "list" ? (
             <motion.div
               key="list"
+              role="tabpanel"
+              id="aquarium-panel-list"
+              aria-labelledby="aquarium-tab-list"
+              tabIndex={0}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 20 }}
@@ -149,7 +159,12 @@ const Fish = () => {
               <div className="glass-card">
                 <h2 className="text-xl font-semibold mb-4">Add New Fish</h2>
                 <div className="flex flex-col sm:flex-row gap-4">
+                  <label htmlFor="fish-name" className="sr-only">
+                    Fish name
+                  </label>
                   <input
+                    id="fish-name"
+                    name="fishName"
                     type="text"
                     value={newFishName}
                     onChange={(e) => setNewFishName(e.target.value)}
@@ -157,7 +172,12 @@ const Fish = () => {
                     placeholder="Fish name..."
                     className="glass-input flex-1"
                   />
+                  <label htmlFor="fish-type" className="sr-only">
+                    Fish size
+                  </label>
                   <select
+                    id="fish-type"
+                    name="fishType"
                     value={newFishType}
                     onChange={(e) => setNewFishType(e.target.value as "small" | "big")}
                     className="glass-select w-full sm:w-32"
@@ -165,7 +185,7 @@ const Fish = () => {
                     <option value="small">Small</option>
                     <option value="big">Big</option>
                   </select>
-                  <button onClick={handleAddFish} className="btn-neon whitespace-nowrap">
+                  <button type="button" onClick={handleAddFish} className="btn-neon whitespace-nowrap">
                     Add Fish
                   </button>
                 </div>
@@ -174,6 +194,10 @@ const Fish = () => {
           ) : (
             <motion.div
               key="planner"
+              role="tabpanel"
+              id="aquarium-panel-planner"
+              aria-labelledby="aquarium-tab-planner"
+              tabIndex={0}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
@@ -185,13 +209,14 @@ const Fish = () => {
 
                 <div className="grid sm:grid-cols-3 gap-6 mb-8">
                   {[
-                    { label: "Width (cm)", value: width, setter: setWidth },
-                    { label: "Height (cm)", value: height, setter: setHeight },
-                    { label: "Length (cm)", value: length, setter: setLength },
+                    { id: "aquarium-width", label: "Width (cm)", value: width, setter: setWidth },
+                    { id: "aquarium-height", label: "Height (cm)", value: height, setter: setHeight },
+                    { id: "aquarium-length", label: "Length (cm)", value: length, setter: setLength },
                   ].map((dim) => (
                     <div key={dim.label}>
-                      <label className="block text-white/60 text-sm mb-2">{dim.label}</label>
+                      <label htmlFor={dim.id} className="block text-white/60 text-sm mb-2">{dim.label}</label>
                       <input
+                        id={dim.id}
                         type="number"
                         value={dim.value}
                         onChange={(e) => dim.setter(Math.max(0, parseInt(e.target.value) || 0))}

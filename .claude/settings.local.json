@@ -8,7 +8,9 @@
       "Bash(./node_modules/.bin/tailwindcss:*)",
       "Bash(node:*)",
       "Bash(curl:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }

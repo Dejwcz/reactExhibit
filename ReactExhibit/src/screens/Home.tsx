@@ -98,7 +98,7 @@ const Home = () => {
                 <div className="glass-card h-full">
                   <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${feature.gradient} p-0.5 mb-4`}>
                     <div className="w-full h-full rounded-[10px] bg-dark-bg-300 flex items-center justify-center">
-                      <svg className="w-6 h-6 icon-adaptive" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-6 h-6 icon-adaptive" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d={feature.icon} />
                       </svg>
                     </div>
@@ -111,7 +111,7 @@ const Home = () => {
                   </p>
                   <div className="mt-4 flex items-center text-neon-purple text-sm font-medium group-hover:text-neon-cyan transition-colors">
                     Explore
-                    <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </div>

@@ -191,6 +191,7 @@ function KanbanColumn({
             <textarea
               value={newTaskContent}
               onChange={(e) => setNewTaskContent(e.target.value)}
+              aria-label="New task description"
               onKeyDown={(e) => {
                 if (e.key === "Enter" && !e.shiftKey) {
                   e.preventDefault();

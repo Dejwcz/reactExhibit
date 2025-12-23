@@ -312,8 +312,10 @@ const MarkdownEditor = () => {
               {toolbarActions.map((action) => (
                 <button
                   key={action.title}
+                  type="button"
                   onClick={action.action}
                   title={action.title}
+                  aria-label={action.title}
                   className="px-3 py-1.5 rounded-lg text-sm font-mono hover:bg-white/10 transition-colors"
                 >
                   {action.icon}
@@ -325,6 +327,7 @@ const MarkdownEditor = () => {
 
             {/* Templates */}
             <select
+              aria-label="Templates"
               onChange={(e) => {
                 loadTemplate(e.target.value as TemplateName);
                 setSelectedTemplate(e.target.value as TemplateName);
@@ -344,11 +347,13 @@ const MarkdownEditor = () => {
             <div className="flex-1" />
 
             {/* View toggle */}
-            <div className="flex gap-1 glass rounded-lg p-1">
+            <div className="flex gap-1 glass rounded-lg p-1" role="group" aria-label="Editor view">
               {(["edit", "split", "preview"] as const).map((tab) => (
                 <button
                   key={tab}
+                  type="button"
                   onClick={() => setActiveTab(tab)}
+                  aria-pressed={activeTab === tab}
                   className={`px-3 py-1 rounded-md text-sm transition-all ${
                     activeTab === tab
                       ? "bg-white/20 text-white"
@@ -414,6 +419,7 @@ const MarkdownEditor = () => {
                 ref={textareaRef}
                 value={markdown}
                 onChange={(e) => setMarkdown(e.target.value)}
+                aria-label="Markdown editor"
                 className="w-full h-[500px] p-4 bg-transparent resize-none focus:outline-none font-mono text-sm leading-relaxed"
                 placeholder="Start writing markdown..."
                 spellCheck={false}
@@ -432,7 +438,7 @@ const MarkdownEditor = () => {
                 <span className="text-sm text-white/60">Preview</span>
               </div>
               <div className="h-[500px] overflow-y-auto p-4">
-                <div className="markdown-preview prose prose-invert prose-sm max-w-none">
+                <div className="markdown-preview prose prose-invert prose-sm max-w-none" role="region" aria-label="Markdown preview">
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={markdownComponents}
