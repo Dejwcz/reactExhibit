@@ -278,9 +278,35 @@ body {
 
 [data-theme="light"] .text-white\/60,
 [data-theme="light"] .text-white\/50,
-[data-theme="light"] .text-white\/40,
+[data-theme="light"] .text-white\/40 {
+  color: rgba(26, 26, 46, 0.6) !important;
+}
+
+[data-theme="light"] .text-white\/70,
 [data-theme="light"] .text-white\/80 {
-  color: rgba(26, 26, 46, 0.7) !important;
+  color: rgba(26, 26, 46, 0.8) !important;
+}
+
+/* Light mode dark backgrounds (for icon containers etc.) */
+[data-theme="light"] .bg-dark-bg-300 {
+  background-color: #ffffff !important;
+}
+
+[data-theme="light"] .bg-dark-bg-200 {
+  background-color: #f5f7fa !important;
+}
+
+[data-theme="light"] .bg-dark-bg-100 {
+  background-color: #e4e8f0 !important;
+}
+
+/* Adaptive icon color */
+.icon-adaptive {
+  color: white;
+}
+
+[data-theme="light"] .icon-adaptive {
+  color: #1a1a2e !important;
 }
 
 /* Light mode borders */
