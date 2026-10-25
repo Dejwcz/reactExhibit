@@ -110,7 +110,7 @@ const Pomodoro = () => {
   // Show notification
   const showNotification = useCallback((title: string, body: string) => {
     if ("Notification" in window && Notification.permission === "granted") {
-      new Notification(title, { body, icon: "/vite.svg" });
+      new Notification(title, { body });
     }
     playSound("finish");
   }, [playSound]);
